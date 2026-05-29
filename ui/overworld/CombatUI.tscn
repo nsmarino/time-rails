@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://cv2fwr6qxrq13" path="res://ui/overworld/combat_ui.gd" id="1_combat_ui_script"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_crosshair"]
-font_size = 28
-font_color = Color(1, 1, 1, 0.95)
-outline_size = 2
-outline_color = Color(0, 0, 0, 0.7)
+font_size = 48
+font_color = Color(0.93979514, 0, 0.16222212, 0.9490196)
+outline_size = 8
+outline_color = Color(0.95, 0.5225, 0, 0.8156863)
 
 [node name="CombatUI" type="CanvasLayer" unique_id=1419006388]
 script = ExtResource("1_combat_ui_script")
@@ -33,6 +33,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.009399695, 0.27161476, 1)
 text = "○"
 label_settings = SubResource("LabelSettings_crosshair")
 horizontal_alignment = 1

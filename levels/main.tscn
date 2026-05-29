@@ -32,6 +32,8 @@ adjustment_saturation = 1.26
 script = ExtResource("1_0xm2m")
 
 [node name="Navigator" parent="." unique_id=343871187 instance=ExtResource("2_m1504")]
+camera_path = NodePath("../Camera3D")
+aim_target_path = NodePath("../Camera3D/AimTarget")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2065183461]
 environment = SubResource("Environment_qy63d")
@@ -44,6 +46,14 @@ environment = SubResource("Environment_qy63d")
 
 [node name="Overworld" parent="Level" unique_id=1089087201 instance=ExtResource("5_ifaiv")]
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Level" unique_id=1905902579]
+transform = Transform3D(1, 0, 0, 0, 0.6755903, 0.73727727, 0, -0.73727727, 0.6755903, 0, 0, 0)
+shadow_enabled = true
+
 [node name="Camera3D" type="Camera3D" parent="." unique_id=613983109]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -4.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 current = true
+fov = 70.0
+
+[node name="AimTarget" type="Node3D" parent="Camera3D" unique_id=613983110]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30)
