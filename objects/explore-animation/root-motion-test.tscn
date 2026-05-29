@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dob3fttypht13"]
+
+[ext_resource type="PackedScene" uid="uid://difbo80owwfy5" path="res://models/character/npc/guy-to-test-root-motion.glb" id="1_7aw56"]
+[ext_resource type="Script" uid="uid://k43phiq1qi4q" path="res://objects/explore-animation/root_motion_test.gd" id="1_xry5p"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xry5p"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xry5p"]
+animation = &"TestRoot"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xry5p"]
+graph_offset = Vector2(-111.359985, 85.44002)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_xry5p")
+nodes/Animation/position = Vector2(90, 160)
+node_connections = [&"output", 0, &"Animation"]
+
+[node name="Node3D" type="CharacterBody3D" unique_id=767927571]
+script = ExtResource("1_xry5p")
+
+[node name="guy-to-test-root-motion" parent="." unique_id=748032392 instance=ExtResource("1_7aw56")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1198980401]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_xry5p")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1084410491]
+root_node = NodePath("../guy-to-test-root-motion")
+root_motion_track = NodePath("Armature/Skeleton3D:Root")
+tree_root = SubResource("AnimationNodeBlendTree_xry5p")
+anim_player = NodePath("../guy-to-test-root-motion/AnimationPlayer")
+
+[editable path="guy-to-test-root-motion"]

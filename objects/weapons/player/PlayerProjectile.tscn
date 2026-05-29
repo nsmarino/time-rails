@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://objects/weapons/base/BaseProjectile.tscn" id="1_base_projectile_scene"]
+
+[node name="PlayerProjectile" instance=ExtResource("1_base_projectile_scene")]
+group_to_damage = &"enemy"

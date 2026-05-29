@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://bpo82p67ll1bv"]
+
+[ext_resource type="Script" uid="uid://bybndys30kcln" path="res://objects/weapons/base/HitscanWeapon.gd" id="1_hitscan_weapon_script"]
+[ext_resource type="Script" uid="uid://ba4jr0o2yp36j" path="res://resources/WeaponData.gd" id="2_weapon_data_script"]
+[ext_resource type="PackedScene" path="res://objects/weapons/vfx/BulletTrail.tscn" id="3_bullet_trail_scene"]
+[ext_resource type="AudioStream" uid="uid://x6brfsui8oi" path="res://sounds/gun-shot.wav" id="4_gunshot"]
+[ext_resource type="AudioStream" uid="uid://7eogyf12ju3t" path="res://sounds/round-click-fx.wav" id="5_0xqal"]
+[ext_resource type="AudioStream" uid="uid://c2q55xq4ewqsx" path="res://sounds/gun-ready.wav" id="6_co0cv"]
+
+[sub_resource type="Resource" id="Resource_player_rifle_data"]
+script = ExtResource("2_weapon_data_script")
+display_name = &"Player Rifle"
+fire_rate = 2.0
+damage = 28.0
+is_automatic = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_player_rifle"]
+albedo_color = Color(0.18, 0.2, 0.22, 1)
+metallic = 0.65
+roughness = 0.45
+
+[sub_resource type="BoxMesh" id="BoxMesh_player_rifle"]
+material = SubResource("StandardMaterial3D_player_rifle")
+size = Vector3(0.1, 0.1, 0.8)
+
+[node name="PlayerRifle" type="Node3D" unique_id=382277934]
+script = ExtResource("1_hitscan_weapon_script")
+trail_scene = ExtResource("3_bullet_trail_scene")
+trail_lifetime = 2.0
+data = SubResource("Resource_player_rifle_data")
+muzzle_spawn_offset = 0.25
+
+[node name="Muzzle" type="Marker3D" parent="." unique_id=1253461397]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.95)
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=379091264]
+one_shot = true
+
+[node name="SFX" type="Node3D" parent="." unique_id=332843691]
+
+[node name="Shoot" type="AudioStreamPlayer3D" parent="SFX" unique_id=1758324358]
+stream = ExtResource("4_gunshot")
+
+[node name="AttemptShot" type="AudioStreamPlayer3D" parent="SFX" unique_id=721954307]
+stream = ExtResource("5_0xqal")
+
+[node name="Ready" type="AudioStreamPlayer3D" parent="SFX" unique_id=399445744]
+stream = ExtResource("6_co0cv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2103630631]
+transform = Transform3D(1, 0, 0, 0, 4.371139e-08, 1, 0, -1, 4.371139e-08, 0, 0, -0.4)
+visible = false
+mesh = SubResource("BoxMesh_player_rifle")

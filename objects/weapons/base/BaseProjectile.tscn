@@ -1,0 +1,27 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://dvr1j11smdpou" path="res://objects/weapons/base/BaseProjectile.gd" id="1_base_projectile_script"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_projectile"]
+albedo_color = Color(0.11764706, 0.11764706, 0.11764706, 1)
+emission_enabled = true
+emission = Color(1, 0.7411765, 0.1764706, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_projectile"]
+material = SubResource("StandardMaterial3D_projectile")
+radius = 0.08
+height = 0.16
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_projectile"]
+radius = 0.08
+
+[node name="BaseProjectile" type="Node3D"]
+script = ExtResource("1_base_projectile_script")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_projectile")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_projectile")

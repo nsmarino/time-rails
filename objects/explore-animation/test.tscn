@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bffgjay1pk7i0"]
+
+[ext_resource type="PackedScene" uid="uid://dob3fttypht13" path="res://objects/explore-animation/root-motion-test.tscn" id="1_0ek00"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0ek00"]
+size = Vector2(10, 10)
+
+[node name="Node3D" type="Node3D" unique_id=476371303]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=539707098]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4376707, 5.8364162)
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=495201201]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=750439318]
+mesh = SubResource("PlaneMesh_0ek00")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1369019631]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.5)
+
+[node name="Node3D" parent="." unique_id=767927571 instance=ExtResource("1_0ek00")]

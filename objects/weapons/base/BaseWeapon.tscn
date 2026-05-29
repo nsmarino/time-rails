@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://vnv4qsky02f7"]
+
+[ext_resource type="Script" uid="uid://b4qv5qaq2ucr1" path="res://objects/weapons/base/BaseWeapon.gd" id="1_base_weapon_script"]
+
+[node name="BaseWeapon" type="Node3D" unique_id=1924363883]
+script = ExtResource("1_base_weapon_script")
+
+[node name="Muzzle" type="Marker3D" parent="." unique_id=1300582931]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=1543866151]
+one_shot = true
+
+[node name="SFX" type="Node3D" parent="." unique_id=250494489]
+
+[node name="Shoot" type="AudioStreamPlayer3D" parent="SFX" unique_id=911512978]

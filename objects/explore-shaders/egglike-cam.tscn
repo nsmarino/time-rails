@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://qko1dcpogfxe"]
+
+[ext_resource type="Shader" uid="uid://c3uknoj05eif4" path="res://objects/explore-shaders/outline-posterize-color-dither.gdshader" id="1_h7npq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w5bfo"]
+render_priority = 0
+shader = ExtResource("1_h7npq")
+shader_parameter/zNear = 0.01
+shader_parameter/zFar = 1000.0
+shader_parameter/enable_outline = false
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_thickness = 0.5
+shader_parameter/enable_color_limit = true
+shader_parameter/color_levels = 32
+shader_parameter/enable_color_palette = false
+shader_parameter/color1 = Color(1, 0.925, 0.839, 1)
+shader_parameter/color2 = Color(1, 0.831, 0.639, 1)
+shader_parameter/color3 = Color(1, 0.667, 0.369, 1)
+shader_parameter/color4 = Color(0.816, 0.506, 0.349, 1)
+shader_parameter/color5 = Color(0.553, 0.412, 0.478, 1)
+shader_parameter/color6 = Color(0.329, 0.306, 0.408, 1)
+shader_parameter/color7 = Color(0.125, 0.236, 0.337, 1)
+shader_parameter/color8 = Color(0.05, 0.169, 0.271, 1)
+shader_parameter/enable_dithering = true
+shader_parameter/dither_strength = 0.2000000095
+
+[sub_resource type="QuadMesh" id="QuadMesh_wuy2e"]
+material = SubResource("ShaderMaterial_w5bfo")
+flip_faces = true
+size = Vector2(3, 3)
+
+[node name="Camera3D" type="Camera3D" unique_id=2082197745]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=592711409]
+transform = Transform3D(1, 0, 0, 0, 0.9961947, 0.08715574, 0, -0.08715574, 0.9961947, 0, 0, 0)
+mesh = SubResource("QuadMesh_wuy2e")
