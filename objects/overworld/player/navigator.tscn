@@ -67,7 +67,7 @@ top_radius = 0.3
 bottom_radius = 0.025
 height = 1.0
 
-[node name="Navigator" type="CharacterBody3D" unique_id=1335866884 groups=["player"]]
+[node name="Navigator" type="CharacterBody3D" unique_id=1335866884]
 script = ExtResource("1_m88ny")
 move_speed = 6.75
 default_weapon_scene = ExtResource("2_0lg8p")

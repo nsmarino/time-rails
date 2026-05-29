@@ -1,11 +1,10 @@
 [gd_scene format=3 uid="uid://dm0ymt1k01748"]
 
 [ext_resource type="Script" uid="uid://b1esvavhc0ixb" path="res://levels/main.gd" id="1_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://cowyb5vnlbv4i" path="res://objects/overworld/player/navigator.tscn" id="2_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://duek3aqswvgk2" path="res://objects/overworld/player/mecha/MechaPlayer.tscn" id="2_m1504"]
 [ext_resource type="Texture2D" uid="uid://wvk4w6lot138" path="res://hdr/kloppenheim_07_puresky_1k.hdr" id="4_m1504"]
-[ext_resource type="PackedScene" uid="uid://qs2cdhultq7o" path="res://ui/overworld/DialogueBox.tscn" id="5_5k4jt"]
-[ext_resource type="PackedScene" uid="uid://dbubdssx6nydw" path="res://ui/overworld/PromptBox.tscn" id="6_qy63d"]
-[ext_resource type="PackedScene" path="res://ui/overworld/CombatUI.tscn" id="7_combat_ui"]
+[ext_resource type="PackedScene" uid="uid://sobb6kxvthei" path="res://levels/overworld/proto-overworld.tscn" id="5_ifaiv"]
+[ext_resource type="PackedScene" uid="uid://dkspe3go2x8xu" path="res://ui/overworld/CombatUI.tscn" id="7_combat_ui"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_21ko3"]
 panorama = ExtResource("4_m1504")
@@ -20,7 +19,6 @@ sky = SubResource("Sky_s07ge")
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.0
 ambient_light_energy = 0.55
-fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.6813262, 0.7325297, 0.7220138, 1)
 fog_density = 1.0
@@ -33,25 +31,19 @@ adjustment_saturation = 1.26
 [node name="Main" type="Node3D" unique_id=1370251571]
 script = ExtResource("1_0xm2m")
 
-[node name="Navigator" parent="." unique_id=1672489611 instance=ExtResource("2_tbgi4")]
-use_gravity = true
+[node name="Navigator" parent="." unique_id=343871187 instance=ExtResource("2_m1504")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2065183461]
 environment = SubResource("Environment_qy63d")
 
 [node name="HUD" type="Node" parent="." unique_id=1494739639]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="HUD" unique_id=1230928883]
-
-[node name="DialogueBox" parent="HUD/CanvasLayer" unique_id=1878604976 instance=ExtResource("5_5k4jt")]
-anchors_preset = 12
-offset_top = 0.0
-
-[node name="PromptBox" parent="HUD/CanvasLayer" unique_id=597706640 instance=ExtResource("6_qy63d")]
-
 [node name="CombatUI" parent="HUD" unique_id=1684459129 instance=ExtResource("7_combat_ui")]
 
 [node name="Level" type="Node3D" parent="." unique_id=2134277765]
 
-[editable path="Navigator"]
-[editable path="Navigator/elena"]
+[node name="Overworld" parent="Level" unique_id=1089087201 instance=ExtResource("5_ifaiv")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=613983109]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -4.5)
+current = true

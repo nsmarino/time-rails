@@ -1,0 +1,203 @@
+[gd_scene format=3 uid="uid://sobb6kxvthei"]
+
+[ext_resource type="PackedScene" uid="uid://xfjfxk0ojb5c" path="res://levels/overworld/base_overworld.tscn" id="1_3jslp"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5jk75"]
+size = Vector2(60, 60)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ni1te"]
+size = Vector3(5, 5, 5)
+
+[node name="Overworld" unique_id=1089087201 instance=ExtResource("1_3jslp")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="0" unique_id=1388596974]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 0)
+mesh = SubResource("PlaneMesh_5jk75")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="1" unique_id=399828842]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -15, 16)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="2" unique_id=648828496]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, -15, 27.5)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="3" unique_id=1240473815]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, -15, 17.5)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="4" unique_id=250177584]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 86)
+mesh = SubResource("PlaneMesh_5jk75")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="5" unique_id=1372547315]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -15, 102)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="6" unique_id=321215199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, -15, 113.5)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="7" unique_id=996046128]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, -15, 103.5)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="8" unique_id=542361553]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 195)
+mesh = SubResource("PlaneMesh_5jk75")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="9" unique_id=208065477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -15, 211)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="10" unique_id=2130329825]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, -15, 222.5)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="11" unique_id=1885433547]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, -15, 212.5)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="12" unique_id=880093346]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 311)
+mesh = SubResource("PlaneMesh_5jk75")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="13" unique_id=1680540119]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -15, 327)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="14" unique_id=1938770986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, -15, 338.5)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="15" unique_id=2062621618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, -15, 328.5)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="16" unique_id=1398930936]
+transform = Transform3D(0.49999997, -0.86602545, 0, 0.86602545, 0.49999997, 0, 0, 0, 1, 28.875, -16.515545, 52)
+mesh = SubResource("PlaneMesh_5jk75")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="17" unique_id=1417118726]
+transform = Transform3D(0.49999997, -0.86602545, 0, 0.86602545, 0.49999997, 0, 0, 0, 1, 36.875, -2.6591377, 68)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="18" unique_id=200784283]
+transform = Transform3D(0.49999997, -0.86602545, 0, 0.86602545, 0.49999997, 0, 0, 0, 1, 34.375, -6.9892645, 79.5)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D20" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="19" unique_id=1839711032]
+transform = Transform3D(0.49999997, -0.86602545, 0, 0.86602545, 0.49999997, 0, 0, 0, 1, 18.875, -33.836052, 69.5)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D21" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="20" unique_id=890024993]
+transform = Transform3D(0.49999997, -0.86602545, 0, 0.86602545, 0.49999997, 0, 0, 0, 1, 28.875, -16.515545, 138)
+mesh = SubResource("PlaneMesh_5jk75")
+
+[node name="MeshInstance3D22" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="21" unique_id=358883767]
+transform = Transform3D(0.49999997, -0.86602545, 0, 0.86602545, 0.49999997, 0, 0, 0, 1, 36.875, -2.6591377, 154)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D23" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="22" unique_id=1808280666]
+transform = Transform3D(0.49999997, -0.86602545, 0, 0.86602545, 0.49999997, 0, 0, 0, 1, 34.375, -6.9892645, 165.5)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D24" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="23" unique_id=345055949]
+transform = Transform3D(0.49999997, -0.86602545, 0, 0.86602545, 0.49999997, 0, 0, 0, 1, 18.875, -33.836052, 155.5)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D25" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="24" unique_id=1443385627]
+transform = Transform3D(0.49999997, -0.86602545, 0, 0.86602545, 0.49999997, 0, 0, 0, 1, 28.875, -16.515545, 247)
+mesh = SubResource("PlaneMesh_5jk75")
+
+[node name="MeshInstance3D26" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="25" unique_id=1369751152]
+transform = Transform3D(0.49999997, -0.86602545, 0, 0.86602545, 0.49999997, 0, 0, 0, 1, 36.875, -2.6591377, 263)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D27" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="26" unique_id=2111683274]
+transform = Transform3D(0.49999997, -0.86602545, 0, 0.86602545, 0.49999997, 0, 0, 0, 1, 34.375, -6.9892645, 274.5)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D28" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="27" unique_id=1831295786]
+transform = Transform3D(0.49999997, -0.86602545, 0, 0.86602545, 0.49999997, 0, 0, 0, 1, 18.875, -33.836052, 264.5)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D29" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="28" unique_id=1280456536]
+transform = Transform3D(0.49999997, -0.86602545, 0, 0.86602545, 0.49999997, 0, 0, 0, 1, 28.875, -16.515545, 363)
+mesh = SubResource("PlaneMesh_5jk75")
+
+[node name="MeshInstance3D30" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="29" unique_id=140574510]
+transform = Transform3D(0.49999997, -0.86602545, 0, 0.86602545, 0.49999997, 0, 0, 0, 1, 36.875, -2.6591377, 379)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D31" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="30" unique_id=971302114]
+transform = Transform3D(0.49999997, -0.86602545, 0, 0.86602545, 0.49999997, 0, 0, 0, 1, 34.375, -6.9892645, 390.5)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D32" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="31" unique_id=1723145176]
+transform = Transform3D(0.49999997, -0.86602545, 0, 0.86602545, 0.49999997, 0, 0, 0, 1, 18.875, -33.836052, 380.5)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D33" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="32" unique_id=376530923]
+transform = Transform3D(0.5, 0.86602545, 0, -0.86602545, 0.5, 0, 0, 0, 1, -30.625, -36.984455, 52)
+mesh = SubResource("PlaneMesh_5jk75")
+
+[node name="MeshInstance3D34" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="33" unique_id=1082126064]
+transform = Transform3D(0.5, 0.86602545, 0, -0.86602545, 0.5, 0, 0, 0, 1, -22.625, -50.840862, 68)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D35" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="34" unique_id=843659333]
+transform = Transform3D(0.5, 0.86602545, 0, -0.86602545, 0.5, 0, 0, 0, 1, -25.125, -46.510735, 79.5)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D36" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="35" unique_id=1061727731]
+transform = Transform3D(0.5, 0.86602545, 0, -0.86602545, 0.5, 0, 0, 0, 1, -40.625, -19.663948, 69.5)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D37" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="36" unique_id=1667164768]
+transform = Transform3D(0.5, 0.86602545, 0, -0.86602545, 0.5, 0, 0, 0, 1, -30.625, -36.984455, 138)
+mesh = SubResource("PlaneMesh_5jk75")
+
+[node name="MeshInstance3D38" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="37" unique_id=219567248]
+transform = Transform3D(0.5, 0.86602545, 0, -0.86602545, 0.5, 0, 0, 0, 1, -22.625, -50.840862, 154)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D39" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="38" unique_id=354481238]
+transform = Transform3D(0.5, 0.86602545, 0, -0.86602545, 0.5, 0, 0, 0, 1, -25.125, -46.510735, 165.5)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D40" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="39" unique_id=1989940645]
+transform = Transform3D(0.5, 0.86602545, 0, -0.86602545, 0.5, 0, 0, 0, 1, -40.625, -19.663948, 155.5)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D41" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="40" unique_id=1617633120]
+transform = Transform3D(0.5, 0.86602545, 0, -0.86602545, 0.5, 0, 0, 0, 1, -30.625, -36.984455, 247)
+mesh = SubResource("PlaneMesh_5jk75")
+
+[node name="MeshInstance3D42" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="41" unique_id=1685875630]
+transform = Transform3D(0.5, 0.86602545, 0, -0.86602545, 0.5, 0, 0, 0, 1, -22.625, -50.840862, 263)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D43" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="42" unique_id=452289680]
+transform = Transform3D(0.5, 0.86602545, 0, -0.86602545, 0.5, 0, 0, 0, 1, -25.125, -46.510735, 274.5)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D44" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="43" unique_id=1997931440]
+transform = Transform3D(0.5, 0.86602545, 0, -0.86602545, 0.5, 0, 0, 0, 1, -40.625, -19.663948, 264.5)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D45" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="44" unique_id=1618887308]
+transform = Transform3D(0.5, 0.86602545, 0, -0.86602545, 0.5, 0, 0, 0, 1, -30.625, -36.984455, 363)
+mesh = SubResource("PlaneMesh_5jk75")
+
+[node name="MeshInstance3D46" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="45" unique_id=812057679]
+transform = Transform3D(0.5, 0.86602545, 0, -0.86602545, 0.5, 0, 0, 0, 1, -22.625, -50.840862, 379)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D47" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="46" unique_id=488269422]
+transform = Transform3D(0.5, 0.86602545, 0, -0.86602545, 0.5, 0, 0, 0, 1, -25.125, -46.510735, 390.5)
+mesh = SubResource("BoxMesh_ni1te")
+
+[node name="MeshInstance3D48" type="MeshInstance3D" parent="Ground" parent_id_path=PackedInt32Array(865474664) index="47" unique_id=13522191]
+transform = Transform3D(0.5, 0.86602545, 0, -0.86602545, 0.5, 0, 0, 0, 1, -40.625, -19.663948, 380.5)
+mesh = SubResource("BoxMesh_ni1te")

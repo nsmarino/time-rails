@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://dkspe3go2x8xu"]
 
-[ext_resource type="Script" path="res://ui/overworld/combat_ui.gd" id="1_combat_ui_script"]
+[ext_resource type="Script" uid="uid://cv2fwr6qxrq13" path="res://ui/overworld/combat_ui.gd" id="1_combat_ui_script"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_crosshair"]
 font_size = 28
@@ -8,10 +8,11 @@ font_color = Color(1, 1, 1, 0.95)
 outline_size = 2
 outline_color = Color(0, 0, 0, 0.7)
 
-[node name="CombatUI" type="CanvasLayer"]
+[node name="CombatUI" type="CanvasLayer" unique_id=1419006388]
 script = ExtResource("1_combat_ui_script")
 
-[node name="Crosshair" type="Control" parent="."]
+[node name="Crosshair" type="Control" parent="." unique_id=2020455207]
+layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -25,16 +26,14 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Circle" type="Label" parent="Crosshair"]
+[node name="Circle" type="Label" parent="Crosshair" unique_id=402529284]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "○"
+label_settings = SubResource("LabelSettings_crosshair")
 horizontal_alignment = 1
 vertical_alignment = 1
-label_settings = SubResource("LabelSettings_crosshair")
