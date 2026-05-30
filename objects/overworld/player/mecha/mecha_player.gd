@@ -2,28 +2,33 @@ extends CharacterBody3D
 
 ## Mecha pilot controller for the on-rails shooter prototype.
 ##
-## - Left stick / IJKL moves the mecha within a fixed X/Y play box (no gravity).
-## - Right stick steers a world-space AimTarget that rides a plane in front of
-##   the camera; its travel is clamped to the camera's frustum at that depth.
+## Both the ship and the aim reticle are screen-space cursors: each is a point
+## on a plane a fixed distance in front of the camera, steered in camera-local
+## X/Y and clamped to the camera frustum at that depth (see _move_cursor /
+## _frustum_extents). Because the camera rides PlayerRoot, banking and forward
+## motion are inherited automatically — the cursors stay on-screen through it.
+##
+## - Left stick / IJKL moves the ship cursor (no gravity, no physics).
+## - Right stick moves the aim cursor (the AimTarget node, a child of the camera).
 ## - CombatAttack fires the equipped weapon from the muzzle toward the AimTarget.
 ##
 ## The on-screen reticle (CombatUI) reads get_reticle_screen_position() each
 ## frame, so the crosshair and the world aim point can never desync.
 
 @export_category("Movement")
-## Movement speed in world units per second.
+## Ship cursor speed across its plane, in world units per second.
 @export var move_speed: float = 12.0
-## Minimum reachable X/Y in world units (the bottom-left of the play box).
-@export var move_min: Vector2 = Vector2(-8.0, -6.0)
-## Maximum reachable X/Y in world units (the top-right of the play box).
-@export var move_max: Vector2 = Vector2(8.0, 6.0)
+## Distance in front of the camera where the ship plane sits (its rail depth).
+@export var player_plane_distance: float = 10.0
+## Fraction of the visible view the ship may roam (1.0 = full screen edges).
+@export var move_bounds_scale: float = 0.85
 
 @export_category("Aiming")
-## Reticle travel speed across the aim plane, in world units per second.
+## Reticle cursor speed across the aim plane, in world units per second.
 @export var aim_speed: float = 18.0
 ## Distance in front of the camera where the aim plane sits.
 @export var aim_plane_distance: float = 30.0
-## Scales the usable aim area relative to the full camera view (1.0 = full screen).
+## Fraction of the visible view the reticle may roam (1.0 = full screen edges).
 @export var aim_bounds_scale: float = 1.0
 
 @export_category("Combat")
@@ -43,11 +48,13 @@ extends CharacterBody3D
 var _camera: Camera3D = null
 var _aim_target: Node3D = null
 var _equipped_weapon: Node3D = null
-var _locked_z: float = 0.0
+
+# Cursor positions in camera-local X/Y (their plane depth is applied on use).
+var _player_cursor: Vector2 = Vector2.ZERO
+var _aim_cursor: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
-	_locked_z = global_position.z
 	_resolve_camera()
 	_resolve_aim_target()
 	_equip_default_weapon()
@@ -59,25 +66,51 @@ func _physics_process(delta: float) -> void:
 	_process_combat()
 
 
+#region Shared cursor clamping
+
+## Integrate input into a camera-local cursor and clamp it to the camera
+## frustum at the given plane distance. Shared by the ship and the reticle.
+func _move_cursor(cursor: Vector2, input: Vector2, speed: float, delta: float, distance: float, bounds_scale: float) -> Vector2:
+	if input.length() > 1.0:
+		input = input.normalized()
+	cursor += input * speed * delta
+
+	var extents := _frustum_extents(distance, bounds_scale)
+	cursor.x = clampf(cursor.x, -extents.x, extents.x)
+	cursor.y = clampf(cursor.y, -extents.y, extents.y)
+	return cursor
+
+
+## Frustum half-size (width, height) at a plane distance, scaled. Godot's
+## Camera3D defaults to KEEP_HEIGHT, so fov is the vertical angle.
+func _frustum_extents(distance: float, bounds_scale: float) -> Vector2:
+	var fov_rad := deg_to_rad(_camera.fov)
+	var half_h := tan(fov_rad * 0.5) * distance
+	var viewport_size := get_viewport().get_visible_rect().size
+	var aspect := 1.0 if viewport_size.y == 0.0 else viewport_size.x / viewport_size.y
+	var half_w := half_h * aspect
+	return Vector2(half_w, half_h) * bounds_scale
+
+#endregion
+
+
 #region Movement
 
-func _process_movement(_delta: float) -> void:
+func _process_movement(delta: float) -> void:
+	if not _camera:
+		return
+
 	var input := Vector2(
 		Input.get_axis("MoveLeft", "MoveRight"),
 		Input.get_axis("MoveDown", "MoveUp")
 	)
-	if input.length() > 1.0:
-		input = input.normalized()
+	_player_cursor = _move_cursor(_player_cursor, input, move_speed, delta, player_plane_distance, move_bounds_scale)
 
-	velocity = Vector3(input.x, input.y, 0.0) * move_speed
-	move_and_slide()
-
-	# Hard-clamp to the play box and lock the rail depth.
-	var pos := global_position
-	pos.x = clampf(pos.x, move_min.x, move_max.x)
-	pos.y = clampf(pos.y, move_min.y, move_max.y)
-	pos.z = _locked_z
-	global_position = pos
+	# Place the ship on its plane relative to the camera. Inheriting the camera's
+	# basis makes the ship bank and advance with the rig.
+	var cam_xform := _camera.global_transform
+	var offset := Vector3(_player_cursor.x, _player_cursor.y, -player_plane_distance)
+	global_transform = Transform3D(cam_xform.basis, cam_xform * offset)
 
 #endregion
 
@@ -92,31 +125,10 @@ func _process_aim(delta: float) -> void:
 		Input.get_axis("LookLeft", "LookRight"),
 		Input.get_axis("LookDown", "LookUp")
 	)
-	if look.length() > 1.0:
-		look = look.normalized()
+	_aim_cursor = _move_cursor(_aim_cursor, look, aim_speed, delta, aim_plane_distance, aim_bounds_scale)
 
-	# AimTarget is parented to the camera, so we steer it in the camera's local
-	# space and keep it pinned to the aim plane depth.
-	var local := _aim_target.position
-	local.z = -aim_plane_distance
-	local.x += look.x * aim_speed * delta
-	local.y += look.y * aim_speed * delta
-
-	var extents := _get_aim_extents()
-	local.x = clampf(local.x, -extents.x, extents.x)
-	local.y = clampf(local.y, -extents.y, extents.y)
-	_aim_target.position = local
-
-
-## Frustum half-size (width, height) at the aim plane distance. Godot's
-## Camera3D defaults to KEEP_HEIGHT, so fov is the vertical angle.
-func _get_aim_extents() -> Vector2:
-	var fov_rad := deg_to_rad(_camera.fov)
-	var half_h := tan(fov_rad * 0.5) * aim_plane_distance
-	var viewport_size := get_viewport().get_visible_rect().size
-	var aspect := 1.0 if viewport_size.y == 0.0 else viewport_size.x / viewport_size.y
-	var half_w := half_h * aspect
-	return Vector2(half_w, half_h) * aim_bounds_scale
+	# AimTarget is a child of the camera, so its local position is the cursor.
+	_aim_target.position = Vector3(_aim_cursor.x, _aim_cursor.y, -aim_plane_distance)
 
 #endregion
 
@@ -198,7 +210,7 @@ func _resolve_aim_target() -> void:
 		_camera.add_child(t)
 		_aim_target = t
 	if _aim_target:
-		_aim_target.position.z = -aim_plane_distance
+		_aim_target.position = Vector3(0.0, 0.0, -aim_plane_distance)
 
 
 func _equip_default_weapon() -> void:
