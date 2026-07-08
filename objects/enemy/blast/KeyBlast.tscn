@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bkeyblast01a7"]
+
+[ext_resource type="PackedScene" uid="uid://t8fvwynvct2" path="res://objects/enemy/base/BaseEnemy.tscn" id="1_base"]
+[ext_resource type="Resource" path="res://objects/enemy/blast/key_blast.tres" id="2_data"]
+
+[sub_resource type="StandardMaterial3D" id="mat_body"]
+albedo_color = Color(0.1, 0.8, 0.95, 1)
+metallic = 0.4
+roughness = 0.3
+emission_enabled = true
+emission = Color(0.1, 0.9, 1, 1)
+emission_energy_multiplier = 0.9
+
+[sub_resource type="PrismMesh" id="mesh_body"]
+material = SubResource("mat_body")
+size = Vector3(1.2, 1.6, 1.2)
+
+[node name="KeyBlast" instance=ExtResource("1_base")]
+enemy_data = ExtResource("2_data")
+activation_distance = 150.0
+
+[node name="Body" type="MeshInstance3D" parent="." index="6"]
+mesh = SubResource("mesh_body")

@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bdoorobstscene1"]
+
+[ext_resource type="PackedScene" uid="uid://b06o1dimev10x" path="res://objects/obstacles/base/BaseObstacle.tscn" id="1_base"]
+[ext_resource type="Script" uid="uid://bdoorobstacle1" path="res://objects/obstacles/door_obstacle.gd" id="2_door"]
+
+[sub_resource type="StandardMaterial3D" id="mat_panel"]
+albedo_color = Color(0.35, 0.06, 0.08, 1)
+metallic = 0.8
+roughness = 0.35
+emission_enabled = true
+emission = Color(0.7, 0.1, 0.12, 1)
+emission_energy_multiplier = 0.35
+
+[sub_resource type="BoxMesh" id="panel_mesh"]
+material = SubResource("mat_panel")
+size = Vector3(3, 6, 0.4)
+
+[sub_resource type="BoxShape3D" id="contact_box"]
+size = Vector3(6, 6, 1)
+
+[node name="DoorObstacle" instance=ExtResource("1_base")]
+script = ExtResource("2_door")
+homing_eligible = false
+is_destructible = false
+
+[node name="ContactDamage" parent="." index="5"]
+damage = 100
+
+[node name="CollisionShape3D" parent="ContactDamage" index="0"]
+shape = SubResource("contact_box")
+
+[node name="LeftPanel" type="MeshInstance3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
+mesh = SubResource("panel_mesh")
+
+[node name="RightPanel" type="MeshInstance3D" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+mesh = SubResource("panel_mesh")
