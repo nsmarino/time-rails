@@ -40,6 +40,14 @@ var _opened: bool = false
 
 func _ready() -> void:
 	super._ready()
+	# The inherited HitReactComponent auto-targets the first mesh under this node
+	# (a door panel) and rewrites its position every physics frame — which fights
+	# the open tween and snaps the LeftPanel back to its closed spot. The door is
+	# indestructible and never hit-reacts, so switch that per-frame write off.
+	var hit_react: Node = get_node_or_null("HitReactComponent")
+	if hit_react:
+		hit_react.set_physics_process(false)
+
 	if _auto_opens():
 		print("[Door:%s] Armed — auto-opens within %.0fu." % [name, auto_open_distance])
 		return
