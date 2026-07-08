@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://5cm2xw8assov" path="res://assets/sounds/hard-splash.wav" id="6_hit"]
 [ext_resource type="AudioStream" uid="uid://ct1sv14b1hb2v" path="res://assets/sounds/doom-sound-fx-secret.wav" id="7_death"]
 [ext_resource type="Script" uid="uid://bh7xn2react0c" path="res://objects/components/hit_react_component.gd" id="8_hitreact"]
+[ext_resource type="Script" uid="uid://cqcoptt54qiwf" path="res://objects/components/contact_damage.gd" id="9_contact"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hit"]
 size = Vector3(2, 2, 2)
@@ -42,3 +43,13 @@ stream = ExtResource("7_death")
 
 [node name="HitReactComponent" type="Node" parent="."]
 script = ExtResource("8_hitreact")
+
+[node name="ContactDamage" type="Area3D" parent="."]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("9_contact")
+damage = 10
+damage_group = &"player"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ContactDamage"]
+shape = SubResource("BoxShape3D_hit")
