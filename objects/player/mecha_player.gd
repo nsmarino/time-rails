@@ -166,6 +166,12 @@ var _base_fov: float = 70.0
 # so this script doesn't depend on the component's class_name being registered.
 var _hit_react: Node = null
 
+# The mecha mesh, hidden on death so only the death burst remains on screen.
+var _mecha_frame: Node3D = null
+# True once the player has died — halts per-frame processing (aim/camera/ship/
+# combat/bob) so the wreck stops steering and firing.
+var _dead: bool = false
+
 # Idle-bob state. _bob_blend eases 0->1 as the rail brakes/resumes; _bob_phase is
 # the running sine phase. _rail_follower is read for its `braked` flag.
 var _rail_follower: Node = null
@@ -179,6 +185,7 @@ func _ready() -> void:
 	_resolve_aim_target()
 	_equip_default_weapon()
 	_hit_react = get_node_or_null("HitReactComponent")
+	_mecha_frame = get_node_or_null("mecha-frame")
 	_resolve_rail_follower()
 	if _camera:
 		_base_fov = _camera.fov
@@ -200,6 +207,9 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	# Once dead the wreck stops steering, aiming, firing, and bobbing.
+	if _dead:
+		return
 	# Order is load-bearing: the camera banks from the aim (step 2), then the
 	# ship positions itself relative to the banked camera (step 3).
 	_update_evade(delta)
@@ -498,11 +508,27 @@ func take_damage(amount: int) -> void:
 	if _hit_react:
 		_hit_react.call("trigger")
 	if hp <= 0:
-		print("[Player] Destroyed!")
-		if _hit_react:
-			_hit_react.call("trigger_death")
-		if Events:
-			Events.player_killed.emit()
+		_die()
+
+
+## Death sequence: play the death burst, hide the mech so only the burst is left,
+## and halt the rail. The game-over quit itself is driven by main.gd off the
+## player_killed signal (after its own delay), leaving room for a death screen.
+func _die() -> void:
+	if _dead:
+		return
+	_dead = true
+	print("[Player] Destroyed!")
+	if _hit_react:
+		_hit_react.call("trigger_death")
+	# Hide the mech so only the death burst remains on screen.
+	if _mecha_frame:
+		_mecha_frame.visible = false
+	# Stop the rig advancing along the rail.
+	if _rail_follower and "braked" in _rail_follower:
+		_rail_follower.braked = true
+	if Events:
+		Events.player_killed.emit()
 
 
 ## Compute the idle bob (vertical float while braked) and feed it to the hit-react
