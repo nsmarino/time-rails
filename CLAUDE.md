@@ -4,7 +4,7 @@ This file provides guidance to Claude Code when working with code in this reposi
 
 ## Project Overview
 
-**time-rails** is a Godot 4.6 (Forward+) arcade rail shooter in the style of *Sin & Punishment: Star Successor*, *Kid Icarus: Uprising*, *Panzer Dragoon*, and *Space Harrier*. The player pilots a mecha along a forward-moving rail through a sci-fi anime world of twisted pines and shattered ruins. The finished prototype targets three levels with strong replay value; goals lean heavily on **visual effects (particle systems, shaders)** and **a variety of fun weapons and enemy types** to experiment with.
+**time-rails** is a Godot 4.7 (Forward+) arcade rail shooter in the style of *Sin & Punishment: Star Successor*, *Kid Icarus: Uprising*, *Panzer Dragoon*, and *Space Harrier*. The player pilots a mecha along a forward-moving rail through a sci-fi anime world of twisted pines and shattered ruins. The finished prototype targets three levels with strong replay value; goals lean heavily on **visual effects (particle systems, shaders)** and **a variety of fun weapons and enemy types** to experiment with.
 
 Main scene: `main.tscn` (project root). The project ships a Godot MCP server (`mcp__godot__*`) for AI-assisted iteration — prefer MCP tools (`run_project`, `game_eval`, `game_screenshot`) for verification over raw shell work.
 
@@ -14,7 +14,7 @@ Top-level dirs (the rearranged structure — expect things here):
 - **`main.tscn`** — the playable scene, at the **project root**. `levels/` holds the rail (`rail_follower.gd`), `main.gd`, and overworld pieces.
 - **`objects/`** — game objects: `objects/components/` (shared behavior components, used by enemies **and** the player), `objects/enemy/` (FseDestructible/FseEnemy bases, concrete enemies, `enemy/blast/`, movement patterns, `*Data` resources), `objects/obstacles/`, `objects/weapons/`, `objects/player/` (the player rig — `mecha_player.gd` + `MechaPlayer.tscn`), and `objects/triggers/` (the legacy dialogue/trigger system).
 - **`explores/`** — standalone R&D sandboxes (`explore-animation/`, `explore-shaders/`, `explore-vfx/`); not loaded by `main.tscn`.
-- **`moments/`** — new top-level dir, currently empty (reserved for upcoming work).
+- **`encounters/`** — authored encounter scenes (enemy/obstacle compositions to drop along a rail), e.g. `encounters/exercise-1.tscn`. (Renamed from the old `moments/`.)
 - **`vfx/`** — `vfx/shaders/` (e.g. `blink.gdshader`) and `vfx/particles/` (e.g. the `blast.tscn` burst).
 - **`ui/`** — HUD / menus, flat (`ui/CombatUI.tscn`, `ui/combat_ui.gd`, plus the legacy `DialogueBox`/`PromptBox`).
 - **`autoloads/`** — `Events`, `GameManager`, `McpInteractionServer`.
@@ -26,9 +26,9 @@ Rule of thumb: new content assets go under `assets/`; new game logic/scenes unde
 
 ## Running & Tooling
 
-- **Open in editor**: launch Godot 4.6, or `mcp__godot__launch_editor`. Run with `mcp__godot__run_project`.
+- **Open in editor**: launch Godot 4.7, or `mcp__godot__launch_editor`. Run with `mcp__godot__run_project`.
 - **Open Blender source**: `make blend` (or `./open-blends`) opens the Blender sources. Note: `.blend` sources are **not currently tracked in-repo** — exported `.glb` land under `assets/models/`.
-- **Godot version**: 4.6.stable.official — GDScript with **typed declarations throughout**; untyped is treated as a warning.
+- **Godot version**: 4.7 — GDScript with **typed declarations throughout**; untyped is treated as a warning.
 
 ## Architecture
 
