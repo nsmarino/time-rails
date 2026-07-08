@@ -45,13 +45,13 @@ func _activate() -> void:
 	print("[%s] Activated." % _label())
 
 
-func take_damage(amount: int) -> void:
+func take_damage(amount: int, is_blast: bool = false) -> void:
 	if not is_destructible:
 		# Hit bounced off — give feedback but take no damage.
 		if _sfx:
 			_sfx.play("hit")
 		return
-	super.take_damage(amount)
+	super.take_damage(amount, is_blast)
 
 
 func _label() -> String:
