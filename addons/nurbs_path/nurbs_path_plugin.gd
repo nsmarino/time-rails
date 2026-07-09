@@ -37,7 +37,7 @@ func _make_visible(visible: bool) -> void:
 
 
 static func _is_nurbs(object: Object) -> bool:
-	return object is Node3D and object.get_script() == NurbsScript
+	return object is Node3D and NurbsGizmo.script_is_nurbs(object.get_script())
 
 
 func _forward_3d_gui_input(camera: Camera3D, event: InputEvent) -> int:

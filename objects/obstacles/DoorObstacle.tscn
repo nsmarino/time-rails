@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bdoorobstscene1"]
+[gd_scene format=3 uid="uid://4kc78fwiuo3g"]
 
 [ext_resource type="PackedScene" uid="uid://b06o1dimev10x" path="res://objects/obstacles/base/BaseObstacle.tscn" id="1_base"]
 [ext_resource type="Script" uid="uid://bdoorobstacle1" path="res://objects/obstacles/door_obstacle.gd" id="2_door"]

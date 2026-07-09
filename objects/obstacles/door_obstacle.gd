@@ -14,9 +14,17 @@ class_name DoorObstacle
 ## two panels slide apart and the ContactDamage is switched off so the player
 ## passes through unharmed.
 
+## Fired once when the door opens (either mode). Level logic (e.g. the exit-rail
+## handoff in main.gd) listens to this rather than polling.
+signal opened
+
 ## The keyBlast enemies whose destruction opens this door. Drag the instances in
 ## from the scene tree. The door listens to each one's `died` signal.
 @export var key_blasts: Array[Node] = []
+## The exit route this door unlocks (an FseExitRail; drag it in like the key
+## blasts). When the door opens, the rail is activated and captures the rig as
+## it comes around to the rail's start. Optional — doors without one just open.
+@export var exit_rail: Node = null
 ## How many of the assigned keyBlasts must be destroyed before the door opens.
 ## If this is 0, OR no keyBlasts are assigned, the door instead AUTO-OPENS when
 ## the player comes within auto_open_distance — handy for tutorial stages and
@@ -97,3 +105,13 @@ func _open() -> void:
 	if _right_panel:
 		tween.tween_property(_right_panel, "position:x",
 			_right_panel.position.x + panel_slide_distance, open_duration)
+
+	# Unlock this door's exit route (duck-typed; see FseExitRail).
+	if exit_rail and exit_rail.has_method("activate"):
+		exit_rail.call("activate")
+
+	opened.emit()
+
+
+func is_open() -> bool:
+	return _opened

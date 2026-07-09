@@ -11,6 +11,10 @@ signal helicopter_destroyed(loc: Vector3)
 signal player_killed
 signal phase_changed(phase: Phase)
 
+# Exit rails (door-gated routes off the main loop; see levels/exit_rail.gd)
+signal exit_rail_captured(rail: Node)
+signal exit_rail_completed(rail: Node)
+
 # Open-field enemy / hit feedback (FSE)
 signal enemy_hp_changed(current: int, max_val: int)
 signal enemy_damaged(amount: int)

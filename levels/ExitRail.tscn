@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bexitrailtscn1b"]
+
+[ext_resource type="Script" uid="uid://bexitrail0gd1a" path="res://levels/exit_rail.gd" id="1_rail"]
+
+[node name="ExitRail" type="Path3D"]
+script = ExtResource("1_rail")

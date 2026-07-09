@@ -26,7 +26,18 @@ func _get_gizmo_name() -> String:
 
 
 func _has_gizmo(node: Node3D) -> bool:
-	return node.get_script() == NurbsScript
+	return script_is_nurbs(node.get_script())
+
+
+## True when the script IS the NurbsPath3D script or extends it (e.g.
+## FseExitRail) — matched by walking the base-script chain, not class_name.
+static func script_is_nurbs(candidate: Variant) -> bool:
+	var s: Script = candidate as Script
+	while s:
+		if s == NurbsScript:
+			return true
+		s = s.get_base_script()
+	return false
 
 
 func _redraw(gizmo: EditorNode3DGizmo) -> void:
