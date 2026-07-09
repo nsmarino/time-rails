@@ -166,7 +166,9 @@ Add a **`NurbsPath3D`** node (a `Path3D` subclass) and author its rail as a
   + `levels/rail_follower.gd` consume the baked `curve` with zero changes.
 - Open curves are **clamped** (reflected phantom endpoints) so the rail starts/ends
   on the first/last control point; `closed` wraps into a seamless loop (pair with
-  PathFollow3D `loop = true`). Interior control points are *approximated*, not
+  PathFollow3D `loop = true`) and is baked to **start (progress 0) at the loop
+  point nearest control point 0, heading toward control point 1** — so a rig at
+  progress 0 spawns at the first control point. Interior control points are *approximated*, not
   interpolated — that's the B-spline trade that removes per-point tangent fiddling.
 - **Editing** is a viewport gizmo (`nurbs_path_gizmo.gd`): drag a handle per control
   point (free move on a camera-facing plane, with undo/redo); **Shift+Left-click**

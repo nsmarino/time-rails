@@ -16,7 +16,10 @@ extends Path3D
 ## buys you tangent-free editing). The OPEN curve is clamped at the ends via
 ## reflected phantom points, so it interpolates the first and last control point
 ## with a sensible tangent. The CLOSED curve wraps into a seamless loop (pair it
-## with PathFollow3D `loop = true`).
+## with PathFollow3D `loop = true`) and starts (progress 0) at the loop point
+## nearest control point 0, heading toward control point 1 — so a rig at progress
+## 0 spawns at your first control point. (For an exact start, place the wrapping
+## control point — the last one — mirrored across P0 from P1.)
 ##
 ## Despite the "Nurbs" name (matching how rails are discussed in this project)
 ## this is the NON-rational case — no per-point weights. Rational NURBS (exact
@@ -129,9 +132,16 @@ func _assemble_open(c: Curve3D, segs: Array) -> void:
 
 func _assemble_closed(c: Curve3D, segs: Array) -> void:
 	var sc := segs.size()
-	for k in range(sc):
+	# Start the loop at the knot dominated by control point 0 — segment (sc-1)'s
+	# V0 = (P[last] + 4*P[0] + P[1]) / 6 — so PathFollow3D progress 0 begins the
+	# player at the curve point nearest control_points[0], heading toward
+	# control_points[1]. This only rotates where the loop starts; its shape is
+	# unchanged. (Mirrors how the open curve already starts exactly at P0.)
+	var start := sc - 1
+	for i in range(sc + 1):
+		var k: int = (start + i) % sc
 		var pos: Vector3 = segs[k][0]
-		c.add_point(pos, segs[(k - 1 + sc) % sc][2] - pos, segs[k][1] - pos)
-	# Repeat the first knot to close the gap so PathFollow3D laps seamlessly.
-	var pos0: Vector3 = segs[0][0]
-	c.add_point(pos0, segs[sc - 1][2] - pos0, Vector3.ZERO)
+		var in_h: Vector3 = segs[(k - 1 + sc) % sc][2] - pos
+		# The final (duplicate) knot closes the loop and takes no out handle.
+		var out_h: Vector3 = Vector3.ZERO if i == sc else segs[k][1] - pos
+		c.add_point(pos, in_h, out_h)
