@@ -3,13 +3,15 @@
 [ext_resource type="Script" uid="uid://b1esvavhc0ixb" path="res://levels/main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://duek3aqswvgk2" path="res://objects/player/MechaPlayer.tscn" id="2_m1504"]
 [ext_resource type="Script" uid="uid://cn8rbspth3d0a" path="res://addons/nurbs_path/nurbs_path_3d.gd" id="4_272bh"]
-[ext_resource type="PackedScene" uid="uid://sobb6kxvthei" path="res://levels/overworld/proto-overworld.tscn" id="5_ifaiv"]
 [ext_resource type="PackedScene" uid="uid://4kc78fwiuo3g" path="res://objects/obstacles/DoorObstacle.tscn" id="7_5vw27"]
 [ext_resource type="PackedScene" uid="uid://dkspe3go2x8xu" path="res://ui/CombatUI.tscn" id="7_combat_ui"]
 [ext_resource type="PackedScene" uid="uid://bkeyblast01a7" path="res://objects/enemy/blast/KeyBlast.tscn" id="8_kek77"]
 [ext_resource type="AudioStream" uid="uid://nekdfepyouik" path="res://assets/sounds/music/selection menu.mp3" id="9_etqu2"]
+[ext_resource type="Texture2D" uid="uid://ckmpw3ui71wsj" path="res://assets/kenney_prototype-textures/PNG/Dark/texture_09.png" id="10_4c57u"]
 [ext_resource type="Script" uid="uid://dcosu2ok1o013" path="res://levels/rail_follower.gd" id="10_rail"]
-[ext_resource type="Script" uid="uid://bexitrail0gd1a" path="res://levels/exit_rail.gd" id="11_exit"]
+[ext_resource type="PackedScene" uid="uid://bbepjelk6fcta" path="res://assets/models/rails/rail-test.glb" id="11_dg77c"]
+[ext_resource type="Script" uid="uid://bf4upb3dfmgm" path="res://levels/exit_rail.gd" id="11_exit"]
+[ext_resource type="Material" uid="uid://cudpdb74j4ur1" path="res://new_standard_material_3d.tres" id="12_ycdy4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jw1n3"]
 sky_top_color = Color(3.465414e-06, 0.63147265, 0.77430177, 1)
@@ -30,7 +32,6 @@ ambient_light_color = Color(0.8776157, 0.8776158, 0.8776157, 1)
 ambient_light_sky_contribution = 0.0
 ambient_light_energy = 2.0
 glow_enabled = true
-fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.14564103, 0.42633775, 0.508289, 1)
 fog_density = 1.0
@@ -46,19 +47,24 @@ volumetric_fog_emission = Color(0.0352255, 0.24853325, 0.39479303, 1)
 adjustment_enabled = true
 adjustment_saturation = 1.26
 
-[sub_resource type="Curve3D" id="Curve3D_kek77"]
+[sub_resource type="Curve3D" id="Curve3D_dg77c"]
 _data = {
-"points": PackedVector3Array(-0.48712158, 0.007873535, 94.98524, 0.48712158, -0.007873535, -94.98524, -0.48712158, 0.007873535, 28.318573, -42.929306, 0, 67.62302, 42.929306, 0, -67.62303, 42.929306, 0, -200.95634, -124.53122, 0, 9.349915, 124.53119, 0, -9.349915, 296.24844, 0, -346.50864, -80.37622, 0, -110.27702, 80.37616, 0, 110.277054, 664.3597, 0, -195.70198, 96.754456, 0, -150.56737, -96.754456, 0, 150.5674, 645.53, 0, 235.81697, 123.79262, -0.007873535, -18.997925, -123.79264, 0.007873535, 18.997864, 233.92531, 0.007873535, 535.84247, 27.776728, 0, 107.884094, -27.776728, 0, -107.88417, 25.828241, 0.03149414, 354.4918, -0.48712158, 0.007873535, 94.98524, 0, 0, 0, -0.48712158, 0.007873535, 28.318573),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, -133.33333, 0, 0, 0, 0, 0, 100, 0, 0, -100, 0, 0, -366.66666, 0, 0, 66.66669, 0, 0, 0, 0, 0, -600),
+"tilts": PackedFloat32Array(0, 0, 0)
 }
-point_count = 8
+point_count = 3
 
-[sub_resource type="Curve3D" id="Curve3D_4c57u"]
+[sub_resource type="Curve3D" id="Curve3D_ycdy4"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, -133.33333, 0, 0, 0, 0, 0, 133.33334, 0, 0, 0, 0, 0, -400),
-"tilts": PackedFloat32Array(0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, -33.333313, 0, 0, -500, 0, -3.3333333, 25, 0, 3.3333333, -25, 0, 3.3333333, -591.6667, 0, -3.333333, 50, 0, 3.333334, -50, 0, 16.666666, -683.3333, 0, 0, 83.33331, 0, 0, 0, 0, 20, -900),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
 }
-point_count = 2
+point_count = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rdbjv"]
+albedo_texture = ExtResource("10_4c57u")
+metallic = 0.2
+roughness = 0.8
 
 [node name="Main" type="Node3D" unique_id=1370251571]
 script = ExtResource("1_0xm2m")
@@ -72,8 +78,6 @@ environment = SubResource("Environment_qy63d")
 
 [node name="Level" type="Node3D" parent="." unique_id=2134277765]
 
-[node name="Overworld" parent="Level" unique_id=1089087201 instance=ExtResource("5_ifaiv")]
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Level" unique_id=1905902579]
 transform = Transform3D(1, 0, 0, 0, 0.6755903, 0.73727727, 0, -0.73727727, 0.6755903, 0, 0, 0)
 light_energy = 0.0
@@ -84,47 +88,36 @@ shadow_enabled = true
 [node name="Obstacles" type="Node3D" parent="Level" unique_id=1811212233]
 
 [node name="Rail" type="Path3D" parent="Level" unique_id=353974188]
-curve = SubResource("Curve3D_kek77")
-debug_custom_color = Color(0.75428176, 0, 0.10327154, 1)
+curve = SubResource("Curve3D_dg77c")
+debug_custom_color = Color(1, 1, 1, 1)
 script = ExtResource("4_272bh")
-control_points = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, -200), Vector3(257.57584, 0, -405.7381), Vector3(747.18726, 0, -256.09946), Vector3(739.8331, 0, 255.92413), Vector3(166.66037, 0, 647.3048), Vector3(-2.9227295, 0.04724121, 369.91144)])
-closed = true
+control_points = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, -400), Vector3(0, 0, -600)])
 metadata/_custom_type_script = "uid://cn8rbspth3d0a"
 
 [node name="RailFollow" type="PathFollow3D" parent="Level/Rail" unique_id=602357976]
-transform = Transform3D(0.99996537, 4.2508492e-07, -0.0051281922, 2.8421106e-14, 0.99998164, 8.288896e-05, 0.0051282165, -8.288852e-05, 0.99996066, -0.48712158, 0.007873535, 28.318573)
+transform = Transform3D(0.999957, 0, 0, 0, 0.99998116, 0, 0, 0, 0.99995136, 0, 0, 0)
+loop = false
 script = ExtResource("10_rail")
+speed = 60.0
 
 [node name="PlayerRoot" type="Node3D" parent="Level/Rail/RailFollow" unique_id=454168420]
 
 [node name="Navigator" parent="Level/Rail/RailFollow/PlayerRoot" unique_id=343871187 instance=ExtResource("2_m1504")]
-player_plane_distance = 8.0
-move_bounds_scale = 0.6
-aim_speed = 20.0
-ship_follow_fraction = 0.1
-ship_bank_max_deg = 2.0
-ship_pitch_max_deg = 10.0
-ship_yaw_max_deg = 10.0
-ship_visual_lerp = 8.0
-camera_roll_max_deg = 1.0
-camera_pitch_max_deg = 2.0
-camera_yaw_max_deg = 4.0
+homing_max_range = 240.0
 brake_bob_amplitude = 0.1
-evade_duration = 0.6
-evade_fov_pullback = 1.0
 camera_path = NodePath("../Camera3D")
 aim_target_path = NodePath("../Camera3D/AimTarget")
 
 [node name="Camera3D" type="Camera3D" parent="Level/Rail/RailFollow/PlayerRoot" unique_id=613983109]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
 current = true
-fov = 30.0
+fov = 40.0
 
 [node name="AimTarget" type="Node3D" parent="Level/Rail/RailFollow/PlayerRoot/Camera3D" unique_id=613983110]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30)
 
 [node name="DoorObstacle" parent="Level" unique_id=530627900 node_paths=PackedStringArray("key_blasts", "exit_rail") instance=ExtResource("7_5vw27")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -191.45096)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -421.06613)
 key_blasts = [NodePath("../KeyBlast"), NodePath("../KeyBlast2")]
 exit_rail = NodePath("../ExitRail")
 keys_required = 2
@@ -133,15 +126,16 @@ open_duration = 0.8
 panel_slide_distance = 6.0
 
 [node name="KeyBlast" parent="Level" unique_id=10218009 instance=ExtResource("8_kek77")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -115)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -366.26904)
 
 [node name="KeyBlast2" parent="Level" unique_id=1289021027 instance=ExtResource("8_kek77")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -115)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -366.26904)
 
 [node name="ExitRail" type="Path3D" parent="Level" unique_id=1641327057]
-curve = SubResource("Curve3D_4c57u")
+curve = SubResource("Curve3D_ycdy4")
+debug_custom_color = Color(0.901944, 9.346992e-05, 0.7145534, 1)
 script = ExtResource("11_exit")
-control_points = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, -400)])
+control_points = Array[Vector3]([Vector3(0, 0, -500), Vector3(0, 0, -600), Vector3(0, 20, -650), Vector3(0, 20, -900)])
 metadata/_custom_type_script = "uid://bexitrail0gd1a"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1852918013]
@@ -160,3 +154,13 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
+
+[node name="CSG" type="CSGCombiner3D" parent="." unique_id=1078058531]
+material_override = SubResource("StandardMaterial3D_rdbjv")
+
+[node name="rail-test" parent="." unique_id=2026487024 instance=ExtResource("11_dg77c")]
+
+[node name="Rail" parent="rail-test" index="0" unique_id=747092897]
+surface_material_override/0 = ExtResource("12_ycdy4")
+
+[editable path="rail-test"]

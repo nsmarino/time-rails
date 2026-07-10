@@ -8,7 +8,7 @@
 script = ExtResource("2_weapon_data_script")
 display_name = &"Player Blaster"
 projectile_scene = ExtResource("3_player_projectile_scene")
-muzzle_velocity = 50.0
+muzzle_velocity = 240.0
 damage = 35.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_player_blaster"]
